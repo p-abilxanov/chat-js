@@ -57,7 +57,7 @@
 
         function sendMessage(message) {
             input.value = ''
-            socket.send(`<b>${time_format(new Date())}</b> | <span>${getCookie('nickname')}</span> | ${message}`)
+            socket.send(`<b>${time_format(new Date())}</b>|<span>${getCookie('nickname')}</span>|${message}`)
         }
 
         input.addEventListener('keydown', (e) => {
@@ -74,7 +74,11 @@
             const newMsg = document.createElement('div')
             newMsg.innerHTML = `<span class='text'>${data.text}</span>`;
             messages.prepend(newMsg);
-            audio.play();
+
+            let nameAuthor = data.author.split('|')[1] + "";
+            nameAuthor = nameAuthor.slice(6, nameAuthor.length - 7);
+            // if (nameAuthor != getCookie('nickname')) audio.play();
+            console.log(`${nameAuthor} != ${getCookie('nickname')}`, nameAuthor != getCookie('nickname'))
         }
     </script>
 </body>
