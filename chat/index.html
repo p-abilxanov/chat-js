@@ -41,6 +41,7 @@
         const messageMain = document.querySelector('.message-main')
         const nameInput = document.querySelector('#name-input')
         const sendButton = document.querySelector('#send')
+        const audio = new Audio('../ringtone/Cute Sms.mp3');
 
         socket.addEventListener('open', (e) => {})
 
@@ -73,6 +74,7 @@
             const newMsg = document.createElement('div')
             newMsg.innerHTML = `<span class='text'>${data.text}</span>`;
             messages.prepend(newMsg);
+            audio.play();
         }
     </script>
 </body>
