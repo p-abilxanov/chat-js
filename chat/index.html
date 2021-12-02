@@ -34,6 +34,9 @@
         function format_two_digits(n) {
             return n < 10 ? '0' + n : n;
         }
+        let audio = document.createElement("AUDIO")
+        document.body.appendChild(audio);
+        audio.src = "../ringtone/Cute Sms.mp3"
 
         var socket = new WebSocket('wss://stream-chat-demo.herokuapp.com')
         const input = document.querySelector('#input')
@@ -41,7 +44,6 @@
         const messageMain = document.querySelector('.message-main')
         const nameInput = document.querySelector('#name-input')
         const sendButton = document.querySelector('#send')
-        const audio = new Audio('../ringtone/Cute Sms.mp3');
 
         socket.addEventListener('open', (e) => {})
 
