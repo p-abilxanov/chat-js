@@ -77,8 +77,7 @@
 
             let nameAuthor = data.author.split('|')[1] + "";
             nameAuthor = nameAuthor.slice(6, nameAuthor.length - 7);
-            // if (nameAuthor != getCookie('nickname')) audio.play();
-            console.log(`${nameAuthor} != ${getCookie('nickname')}`, nameAuthor != getCookie('nickname'))
+            if (nameAuthor != getCookie('nickname')) audio.play();
         }
     </script>
 </body>
