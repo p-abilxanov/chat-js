@@ -1,0 +1,75 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+main {
+    width: 100vw;
+    height: 100vh;
+    padding: 10px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-main {
+    flex-basis: 90%;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-y: scroll;
+}
+
+#messages div {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, .2);
+}
+
+#messages div b {
+    color: #f8914c;
+}
+
+#messages div span {
+    color: #2e5cf1;
+}
+
+.text {
+    color: #fff !important;
+}
+
+#name-input {
+    flex-basis: 10%;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.send-message {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+input {
+    padding: 10px 5px;
+    flex-basis: 80%;
+    outline: none;
+    border: none;
+}
+
+button {
+    flex-basis: 20%;
+    background-color: #4365fd;
+    outline: none;
+    border: none;
+}

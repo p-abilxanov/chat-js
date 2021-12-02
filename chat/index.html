@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Websocket</title>
+</head>
+
+<body>
+    <main>
+        <div class='message-main'>
+            <div id='messages'></div>
+        </div>
+
+        <div id="name-input">
+            <div class="send-message">
+                <input type="text" name="input" id="input" placeholder="Text...">
+                <button id='send'>Choose Name</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/cookielib@1.1.3/src/cookie.js"></script>
+    <script>
+        function time_format(d) {
+            let hours = format_two_digits(d.getHours());
+            let minutes = format_two_digits(d.getMinutes());
+            return hours + ":" + minutes;
+        }
+
+        function format_two_digits(n) {
+            return n < 10 ? '0' + n : n;
+        }
+
+        var socket = new WebSocket('wss://stream-chat-demo.herokuapp.com')
+        const input = document.querySelector('#input')
+        const messages = document.querySelector('#messages')
+        const messageMain = document.querySelector('.message-main')
+        const nameInput = document.querySelector('#name-input')
+        const sendButton = document.querySelector('#send')
+
+        socket.addEventListener('open', (e) => {})
+
+        socket.addEventListener('message', (message) => {
+            let inMessage = JSON.parse(message.data)
+
+            if (inMessage.type === 'history') {
+                inMessage.data.forEach(message => addMessage(message))
+            } else if (inMessage.type === 'message') {
+                addMessage(inMessage.data)
+            }
+        })
+
+        function sendMessage(message) {
+            input.value = ''
+            socket.send(`<b>${time_format(new Date())}</b> | <span>${getCookie('nickname')}</span> | ${message}`)
+        }
+
+        input.addEventListener('keydown', (e) => {
+            if (e.keyCode === 13) {
+                sendMessage(e.target.value)
+            }
+        })
+
+        sendButton.addEventListener('click', (e) => {
+            sendMessage(input.value)
+        })
+
+        function addMessage(data) {
+            const newMsg = document.createElement('div')
+            newMsg.innerHTML = `<span class='text'>${data.text}</span>`;
+            messages.prepend(newMsg);
+        }
+    </script>
+</body>
+
+</html>
