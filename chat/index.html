@@ -34,10 +34,13 @@
         function format_two_digits(n) {
             return n < 10 ? '0' + n : n;
         }
-        let audio = document.createElement("AUDIO")
-        document.body.appendChild(audio);
-        audio.src = "../ringtone/Cute Sms.mp3"
 
+        function playSound(url) {
+            const audio = new Audio(url);
+            audio.play();
+        }
+
+        const urlRingtone = '../ringtone/Cute Sms.mp3';
         var socket = new WebSocket('wss://stream-chat-demo.herokuapp.com')
         const input = document.querySelector('#input')
         const messages = document.querySelector('#messages')
@@ -79,7 +82,7 @@
 
             let nameAuthor = data.author.split('|')[1] + "";
             nameAuthor = nameAuthor.slice(6, nameAuthor.length - 7);
-            if (nameAuthor != getCookie('nickname')) audio.play();
+            if (nameAuthor != getCookie('nickname')) playSound(urlRingtone);
         }
     </script>
 </body>
